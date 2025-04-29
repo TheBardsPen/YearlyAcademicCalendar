@@ -20,15 +20,16 @@ namespace YearlyAcademicCalendar
         
         private static readonly int MAX_NUMBER_OF_COURSES = 9;
         
-        //private Course[] courses = new Course[MAX_NUMBER_OF_COURSES];
+        private Course[] courses = new Course[MAX_NUMBER_OF_COURSES];
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
-        //private int coursesArraySize = 0;        //A counter that stores the real size of the array
+        private int coursesArraySize = 0;        //A counter that stores the real size of the array
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             ClearAllForm();
         }
+
         private void ClearAllForm()
         {
             txtTotalCredits.Text = "";
@@ -42,6 +43,9 @@ namespace YearlyAcademicCalendar
             textBox7.Text = "";
             textBox8.Text = "";
             textBox9.Text = "";
+
+            courses = new Course[MAX_NUMBER_OF_COURSES];
+            coursesArraySize = 0;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -54,8 +58,9 @@ namespace YearlyAcademicCalendar
             {
                 frmAddCourse addCourseForm = new frmAddCourse();
                 Course newCourse = addCourseForm.GetNewCourse();
-
-                addCourseToArray(newCourse);
+                
+                if (addCourseForm.DialogResult == DialogResult.OK)
+                    addCourseToArray(newCourse);
             }
 
             UpdateForm();
@@ -244,9 +249,10 @@ namespace YearlyAcademicCalendar
             else
             {
                 frmDeleteCourse deleteCourseForm = new frmDeleteCourse();
-                string deleteCourse = deleteCourseForm.GetDeletionCourseName();
+                string deleteCourse = deleteCourseForm.GetDeletionCourseName(courses, coursesArraySize);
 
-                deleteCourseFromArray(deleteCourse);
+                if (deleteCourseForm.DialogResult == DialogResult.OK)
+                    deleteCourseFromArray(deleteCourse);
             }
 
             UpdateForm();
