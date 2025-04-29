@@ -21,16 +21,17 @@ namespace YearlyAcademicCalendar
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ValidateData())
+            if (IsValid())
             {
                 currCourse = new Course();
                 currCourse.Name = txtNewCourseName.Text;
                 currCourse.Credits = int.Parse(txtCredits.Text);
-                currCourse.Status = (Status)Enum.Parse(typeof(Status), txtStatus.Text.ToUpper());
+                currCourse.Status = (Status)Enum.Parse(typeof(Status), cboStatus.Text.ToUpper());
                 currCourse.PrecedingCourseName = txtPrecedingCourseName.Text;
                 currCourse.FollowingCourseName = txtFollowingCourseName.Text;
+
+                DialogResult = DialogResult.OK;
             }
-            this.Close();
         }
 
         public Course GetNewCourse()
@@ -39,21 +40,14 @@ namespace YearlyAcademicCalendar
             return currCourse;
         }
 
-        private bool ValidateData()
+        private bool IsValid()
         {
-            bool success = true;
-            string msg = "";
-            
-            msg += Validator.IsPresent(txtNewCourseName.Text, lblNewCourseName.Tag.ToString());
-            msg += Validator.IsCourseCreditsValid(txtCredits.Text, lblCredits.Tag.ToString());
-            msg += Validator.IsStatusValid(txtStatus.Text, lblStatus.Tag.ToString());
+            if (Validation.IsTextboxString(txtNewCourseName.Tag.ToString(), txtNewCourseName) &&
+                Validation.IsTextboxInt(txtCredits.Tag.ToString(), txtCredits, 1, 5) &&
+                Validation.IsComboSelected(cboStatus.Tag.ToString(), cboStatus))
+                return true;
 
-            if (msg != "")
-            {
-                success = false;
-                MessageBox.Show(msg, "Entry Error");
-            }
-            return success;
+            return false;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

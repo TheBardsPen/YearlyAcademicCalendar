@@ -13,6 +13,8 @@ namespace YearlyAcademicCalendar
     public partial class frmDeleteCourse : Form
     {
         private string currCourse;
+        private Course[] courses;
+        private int arraySize;
 
         public frmDeleteCourse()
         {
@@ -21,32 +23,36 @@ namespace YearlyAcademicCalendar
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (ValidateData())
+            if (IsValid())
             {
-                currCourse = txtCourseName.Text;
+                currCourse = cboCourse.Text;
+                DialogResult = DialogResult.OK;
             }
-            this.Close();
         }
 
-        public string GetDeletionCourseName()
+        public string GetDeletionCourseName(Course[] courses, int size)
         {
+            this.courses = courses;
+            arraySize = size;
+
+            for (int i = 0; i < arraySize; i++)
+                cboCourse.Items.Add(courses[i].Name);
+
             this.ShowDialog();
             return currCourse;
         }
 
-        private bool ValidateData()
+        private bool IsValid()
         {
-            bool success = true;
-            string msg = "";
+            if (Validation.IsComboSelected(cboCourse.Tag.ToString(), cboCourse))
+                return true;
 
-            msg += Validator.IsPresent(txtCourseName.Text, lblCourseName.Tag.ToString());
+            return false;
+        }
 
-            if (msg != "")
-            {
-                success = false;
-                MessageBox.Show(msg, "Entry Error");
-            }
-            return success;
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
