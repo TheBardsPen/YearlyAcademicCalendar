@@ -16,6 +16,8 @@ namespace YearlyAcademicCalendar
         public frmYearlyAcademicCalendar()
         {
             InitializeComponent();
+
+            courses.Changed += Courses_Changed; // Event handler for course changes
         }
         
         private static readonly int MAX_NUMBER_OF_COURSES = 9;
@@ -24,6 +26,29 @@ namespace YearlyAcademicCalendar
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
 
+        private void Courses_Changed(Course course, bool add)
+        {
+            if (add)
+            {
+                totalCredits += course.Credits;
+
+                if (course.Status == Status.PASSED)
+                {
+                    totalCreditsCompleted += course.Credits;
+                }
+            }
+            else
+            {
+                totalCredits -= course.Credits;
+
+                if (course.Status == Status.PASSED)
+                {
+                    totalCreditsCompleted -= course.Credits;
+                }
+            }
+
+            UpdateForm();
+        }
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             ClearAllForm();
@@ -232,15 +257,13 @@ namespace YearlyAcademicCalendar
 
                 if (deleteIndex != -1)
                 {
-                    courses.Remove(deleteIndex);
+                    courses.Remove(deleteIndex); // triggers Changed event
                 }
                 else
                 {
                     MessageBox.Show($"Course {courseToDelete} does not exist.", "Error");
                 }
             }
-
-            UpdateForm();
         }
 
         private void UpdateForm()

@@ -23,7 +23,7 @@ namespace YearlyAcademicCalendar
         public void Add(Course course, int index)
         {
             courses.Insert(index, course);
-            //Changed(course, true);
+            Changed?.Invoke(course, true); // Notify that a course was added
         }
 
         public void Clear()
@@ -43,7 +43,7 @@ namespace YearlyAcademicCalendar
             Course deletedCourse = courses[index];
             courses.RemoveAt(index);
 
-            //Changed(deletedCourse, false);
+            Changed?.Invoke(deletedCourse, false);// Notify that a course was removed
         }
 
         public Course this[int i]
