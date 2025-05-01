@@ -37,7 +37,7 @@
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(650, 140);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(176, 73);
             this.btnCancel.TabIndex = 18;
@@ -48,7 +48,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(258, 140);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(176, 73);
             this.btnDelete.TabIndex = 17;
@@ -72,7 +72,7 @@
             this.cboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCourse.FormattingEnabled = true;
             this.cboCourse.Location = new System.Drawing.Point(474, 40);
-            this.cboCourse.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.cboCourse.Margin = new System.Windows.Forms.Padding(6);
             this.cboCourse.Name = "cboCourse";
             this.cboCourse.Size = new System.Drawing.Size(386, 33);
             this.cboCourse.TabIndex = 20;
@@ -87,8 +87,9 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblCourseName);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDeleteCourse";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delete Course";
             this.Load += new System.EventHandler(this.frmDeleteCourse_Load);
             this.ResumeLayout(false);

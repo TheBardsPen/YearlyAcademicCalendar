@@ -214,20 +214,31 @@ namespace YearlyAcademicCalendar
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //if (coursesArraySize == 0)
-            //{
-            //    MessageBox.Show($"The academic plan is empty. Please add courses.", "Plan Empty Error");
-            //}
-            //else
-            //{
-            //    frmDeleteCourse deleteCourseForm = new frmDeleteCourse();
-            //    string deleteCourse = deleteCourseForm.GetDeletionCourseName(courses, coursesArraySize);
+            frmDeleteCourse frmDeleteCourse = new frmDeleteCourse();
+            string courseToDelete = frmDeleteCourse.GetDeletionCourseName(courses);
 
-            //    if (deleteCourseForm.DialogResult == DialogResult.OK)
-            //        deleteCourseFromArray(deleteCourse);
-            //}
+            if (!string.IsNullOrEmpty(courseToDelete))
+            {
 
-            //UpdateForm();
+                int deleteIndex = -1;
+                for (int i = 0; i < courses.Count; i++)
+                {
+                    if (courses[i].Name.Equals(courseToDelete, StringComparison.OrdinalIgnoreCase))
+                    {
+                        deleteIndex = i;
+                        break;
+                    }
+                }
+
+                if (deleteIndex != -1)
+                {
+                    courses.Remove(deleteIndex);
+                }
+                else
+                {
+                    MessageBox.Show($"Course {courseToDelete} does not exist.", "Error");
+                }
+            }
         }
 
         private void UpdateForm()

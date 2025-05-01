@@ -29,13 +29,16 @@ namespace YearlyAcademicCalendar
             }
         }
 
-        public string GetDeletionCourseName(Course[] courses, int size)
+        public string GetDeletionCourseName(CourseList courses)
         {
-            this.courses = courses;
-            arraySize = size;
+            this.courseList = courses;
+            
+            cboCourse.Items.Clear();
 
-            for (int i = 0; i < arraySize; i++)
-                cboCourse.Items.Add(courses[i].Name);
+            for (int i = 0; i <  courseList.Count; i ++)
+            {
+                cboCourse.Items.Add(courseList[i].Name);
+            }
 
             this.ShowDialog();
             return currCourse;
@@ -43,10 +46,7 @@ namespace YearlyAcademicCalendar
 
         private bool IsValid()
         {
-            if (Validation.IsComboSelected(cboCourse.Tag.ToString(), cboCourse))
-                return true;
-
-            return false;
+            return Validation.IsComboSelected(cboCourse.Tag.ToString(), cboCourse);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
