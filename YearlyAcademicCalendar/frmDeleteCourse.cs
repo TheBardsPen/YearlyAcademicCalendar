@@ -13,8 +13,7 @@ namespace YearlyAcademicCalendar
     public partial class frmDeleteCourse : Form
     {
         private string currCourse;
-        private Course[] courses;
-        private int arraySize;
+        private CourseList courseList;
 
         public frmDeleteCourse()
         {
@@ -53,6 +52,11 @@ namespace YearlyAcademicCalendar
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmDeleteCourse_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
