@@ -239,6 +239,8 @@ namespace YearlyAcademicCalendar
                     MessageBox.Show($"Course {courseToDelete} does not exist.", "Error");
                 }
             }
+
+            UpdateForm();
         }
 
         private void UpdateForm()
@@ -249,9 +251,12 @@ namespace YearlyAcademicCalendar
             TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4, 
                 textBox5, textBox6, textBox7, textBox8, textBox9};
 
-            for(int i = 0; i < courses.Count; i++)
+            for(int i = 0; i < txtBoxes.Length; i++)
             {
-                txtBoxes[i].Text = courses[i].Name;
+                if (i < courses.Count)
+                    txtBoxes[i].Text = courses[i].Name;
+                else
+                    txtBoxes[i].Text = "";
             }
         }
 
