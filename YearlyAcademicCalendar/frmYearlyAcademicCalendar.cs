@@ -26,6 +26,8 @@ namespace YearlyAcademicCalendar
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
 
+
+        // Courses_Changed is called when a course is added or removed
         private void Courses_Changed(Course course, bool add)
         {
             if (add)
@@ -239,8 +241,9 @@ namespace YearlyAcademicCalendar
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            frmDeleteCourse frmDeleteCourse = new frmDeleteCourse();
+            frmDeleteCourse frmDeleteCourse = new frmDeleteCourse(); 
             string courseToDelete = frmDeleteCourse.GetDeletionCourseName(courses);
+
 
             if (!string.IsNullOrEmpty(courseToDelete))
             {
