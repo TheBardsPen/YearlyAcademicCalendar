@@ -23,19 +23,19 @@ namespace YearlyAcademicCalendar
         public void Add(Course course, int index)
         {
             courses.Insert(index, course);
-            Changed(course, true);
+            //Changed(course, true);
         }
 
         public void Clear()
         {
             courses.Clear();
-            Cleared();
+            //Cleared();
         }
 
         public void Remove(Course course)
         {
             courses.Remove(course);
-            Changed(course, false);
+            //Changed(course, false);
         }
 
         public void Remove(int index)
@@ -43,7 +43,7 @@ namespace YearlyAcademicCalendar
             Course deletedCourse = courses[index];
             courses.RemoveAt(index);
 
-            Changed(deletedCourse, false);
+            //Changed(deletedCourse, false);
         }
 
         public Course this[int i]
@@ -80,6 +80,44 @@ namespace YearlyAcademicCalendar
         {
             courses.Remove(course);
             return courses;
+        }
+
+        public void UpdatePropertiesAfterAdd(int index)
+        {
+            //Update the affected courses properties
+            if (index == 0)                               //Newly added course is at the first element
+            {
+                var insertedCourse = courses[index];
+                insertedCourse.PrecedingCourseName = null;
+                courses[index] = insertedCourse;
+
+                var secondCourse = courses[index + 1];
+                secondCourse.PrecedingCourseName = courses[index].Name;
+                courses[index + 1] = secondCourse;
+            }
+            else if (index > 0)                           //Newly added course is not at the first element
+            {
+                var previousCourse = courses[index - 1];
+                previousCourse.FollowingCourseName = courses[index].Name;
+                courses[index - 1] = previousCourse;
+
+                var insertedCourse = courses[index];
+                insertedCourse.PrecedingCourseName = courses[index - 1].Name;
+                courses[index] = insertedCourse;
+            }
+
+            if (index < courses.Count - 1)                   //Newly added course is not at the end
+            {
+                var insertedCourse = courses[index];
+                insertedCourse.FollowingCourseName = courses[index + 1].Name;
+                courses[index] = insertedCourse;
+            }
+            else if (index == courses.Count - 1)             //Newly added course is the last element
+            {
+                var insertedCourse = courses[index];
+                insertedCourse.FollowingCourseName = null;
+                courses[index] = insertedCourse;
+            }
         }
     }
 }
