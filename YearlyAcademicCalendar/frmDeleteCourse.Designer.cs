@@ -36,10 +36,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(325, 73);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Location = new System.Drawing.Point(650, 140);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(88, 38);
+            this.btnCancel.Size = new System.Drawing.Size(176, 73);
             this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -47,10 +47,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(129, 73);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Location = new System.Drawing.Point(258, 140);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(88, 38);
+            this.btnDelete.Size = new System.Drawing.Size(176, 73);
             this.btnDelete.TabIndex = 17;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -59,10 +59,10 @@
             // lblCourseName
             // 
             this.lblCourseName.AutoSize = true;
-            this.lblCourseName.Location = new System.Drawing.Point(103, 24);
-            this.lblCourseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCourseName.Location = new System.Drawing.Point(206, 46);
+            this.lblCourseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCourseName.Name = "lblCourseName";
-            this.lblCourseName.Size = new System.Drawing.Size(74, 13);
+            this.lblCourseName.Size = new System.Drawing.Size(149, 25);
             this.lblCourseName.TabIndex = 12;
             this.lblCourseName.Tag = "Course Name";
             this.lblCourseName.Text = "Course Name:";
@@ -71,24 +71,27 @@
             // 
             this.cboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCourse.FormattingEnabled = true;
-            this.cboCourse.Location = new System.Drawing.Point(237, 21);
+            this.cboCourse.Location = new System.Drawing.Point(474, 40);
+            this.cboCourse.Margin = new System.Windows.Forms.Padding(6);
             this.cboCourse.Name = "cboCourse";
-            this.cboCourse.Size = new System.Drawing.Size(195, 21);
+            this.cboCourse.Size = new System.Drawing.Size(386, 33);
             this.cboCourse.TabIndex = 20;
             this.cboCourse.Tag = "Course Name";
             // 
             // frmDeleteCourse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 144);
+            this.ClientSize = new System.Drawing.Size(980, 277);
             this.Controls.Add(this.cboCourse);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.lblCourseName);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDeleteCourse";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delete Course";
+            this.Load += new System.EventHandler(this.frmDeleteCourse_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

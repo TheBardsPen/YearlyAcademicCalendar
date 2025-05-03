@@ -45,10 +45,10 @@
             // lblNewCourseName
             // 
             this.lblNewCourseName.AutoSize = true;
-            this.lblNewCourseName.Location = new System.Drawing.Point(35, 24);
-            this.lblNewCourseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNewCourseName.Location = new System.Drawing.Point(70, 46);
+            this.lblNewCourseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNewCourseName.Name = "lblNewCourseName";
-            this.lblNewCourseName.Size = new System.Drawing.Size(99, 13);
+            this.lblNewCourseName.Size = new System.Drawing.Size(197, 25);
             this.lblNewCourseName.TabIndex = 0;
             this.lblNewCourseName.Tag = "New Course Name";
             this.lblNewCourseName.Text = "New Course Name:";
@@ -56,10 +56,10 @@
             // lblCredits
             // 
             this.lblCredits.AutoSize = true;
-            this.lblCredits.Location = new System.Drawing.Point(35, 64);
-            this.lblCredits.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCredits.Location = new System.Drawing.Point(70, 123);
+            this.lblCredits.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCredits.Name = "lblCredits";
-            this.lblCredits.Size = new System.Drawing.Size(42, 13);
+            this.lblCredits.Size = new System.Drawing.Size(86, 25);
             this.lblCredits.TabIndex = 1;
             this.lblCredits.Tag = "Credits";
             this.lblCredits.Text = "Credits:";
@@ -67,10 +67,10 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(35, 104);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblStatus.Location = new System.Drawing.Point(70, 200);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(40, 13);
+            this.lblStatus.Size = new System.Drawing.Size(79, 25);
             this.lblStatus.TabIndex = 2;
             this.lblStatus.Tag = "Status";
             this.lblStatus.Text = "Status:";
@@ -78,10 +78,10 @@
             // lblPrecedingCourseName
             // 
             this.lblPrecedingCourseName.AutoSize = true;
-            this.lblPrecedingCourseName.Location = new System.Drawing.Point(35, 144);
-            this.lblPrecedingCourseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPrecedingCourseName.Location = new System.Drawing.Point(70, 277);
+            this.lblPrecedingCourseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrecedingCourseName.Name = "lblPrecedingCourseName";
-            this.lblPrecedingCourseName.Size = new System.Drawing.Size(125, 13);
+            this.lblPrecedingCourseName.Size = new System.Drawing.Size(252, 25);
             this.lblPrecedingCourseName.TabIndex = 3;
             this.lblPrecedingCourseName.Tag = "Preceding Course Name";
             this.lblPrecedingCourseName.Text = "Preceding Course Name:";
@@ -89,20 +89,20 @@
             // lblFollowingCourseName
             // 
             this.lblFollowingCourseName.AutoSize = true;
-            this.lblFollowingCourseName.Location = new System.Drawing.Point(35, 184);
-            this.lblFollowingCourseName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFollowingCourseName.Location = new System.Drawing.Point(70, 354);
+            this.lblFollowingCourseName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFollowingCourseName.Name = "lblFollowingCourseName";
-            this.lblFollowingCourseName.Size = new System.Drawing.Size(121, 13);
+            this.lblFollowingCourseName.Size = new System.Drawing.Size(246, 25);
             this.lblFollowingCourseName.TabIndex = 4;
             this.lblFollowingCourseName.Tag = "Following Course Name";
             this.lblFollowingCourseName.Text = "Following Course Name:";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(79, 237);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Location = new System.Drawing.Point(158, 456);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(88, 38);
+            this.btnSave.Size = new System.Drawing.Size(176, 73);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -110,10 +110,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(275, 237);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(550, 456);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(88, 38);
+            this.btnCancel.Size = new System.Drawing.Size(176, 73);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -121,36 +121,36 @@
             // 
             // txtNewCourseName
             // 
-            this.txtNewCourseName.Location = new System.Drawing.Point(170, 21);
-            this.txtNewCourseName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNewCourseName.Location = new System.Drawing.Point(340, 40);
+            this.txtNewCourseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNewCourseName.Name = "txtNewCourseName";
-            this.txtNewCourseName.Size = new System.Drawing.Size(195, 20);
+            this.txtNewCourseName.Size = new System.Drawing.Size(386, 31);
             this.txtNewCourseName.TabIndex = 7;
             this.txtNewCourseName.Tag = "New Course Name";
             // 
             // txtCredits
             // 
-            this.txtCredits.Location = new System.Drawing.Point(170, 61);
-            this.txtCredits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCredits.Location = new System.Drawing.Point(340, 117);
+            this.txtCredits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCredits.Name = "txtCredits";
-            this.txtCredits.Size = new System.Drawing.Size(195, 20);
+            this.txtCredits.Size = new System.Drawing.Size(386, 31);
             this.txtCredits.TabIndex = 8;
             this.txtCredits.Tag = "Credits";
             // 
             // txtPrecedingCourseName
             // 
-            this.txtPrecedingCourseName.Location = new System.Drawing.Point(170, 141);
-            this.txtPrecedingCourseName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPrecedingCourseName.Location = new System.Drawing.Point(340, 271);
+            this.txtPrecedingCourseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrecedingCourseName.Name = "txtPrecedingCourseName";
-            this.txtPrecedingCourseName.Size = new System.Drawing.Size(195, 20);
+            this.txtPrecedingCourseName.Size = new System.Drawing.Size(386, 31);
             this.txtPrecedingCourseName.TabIndex = 10;
             // 
             // txtFollowingCourseName
             // 
-            this.txtFollowingCourseName.Location = new System.Drawing.Point(170, 181);
-            this.txtFollowingCourseName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtFollowingCourseName.Location = new System.Drawing.Point(340, 348);
+            this.txtFollowingCourseName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFollowingCourseName.Name = "txtFollowingCourseName";
-            this.txtFollowingCourseName.Size = new System.Drawing.Size(195, 20);
+            this.txtFollowingCourseName.Size = new System.Drawing.Size(386, 31);
             this.txtFollowingCourseName.TabIndex = 11;
             // 
             // cboStatus
@@ -162,17 +162,18 @@
             "InProgress",
             "Passed",
             "Failed"});
-            this.cboStatus.Location = new System.Drawing.Point(170, 101);
+            this.cboStatus.Location = new System.Drawing.Point(340, 194);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(195, 21);
+            this.cboStatus.Size = new System.Drawing.Size(386, 33);
             this.cboStatus.TabIndex = 12;
             this.cboStatus.Tag = "Status";
             // 
             // frmAddCourse
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 289);
+            this.ClientSize = new System.Drawing.Size(814, 556);
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.txtFollowingCourseName);
             this.Controls.Add(this.txtPrecedingCourseName);
@@ -185,8 +186,9 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblCredits);
             this.Controls.Add(this.lblNewCourseName);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAddCourse";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Course";
             this.ResumeLayout(false);
             this.PerformLayout();

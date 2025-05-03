@@ -23,19 +23,21 @@ namespace YearlyAcademicCalendar
         public void Add(Course course, int index)
         {
             courses.Insert(index, course);
-            Changed(course, true);
+            Changed?.Invoke(course, true); // Notify that a course was added
         }
 
         public void Clear()
         {
             courses.Clear();
-            Cleared();
+            //Cleared();
         }
 
         public void Remove(Course course)
         {
+            Course deletedCourse = course;
             courses.Remove(course);
-            Changed(course, false);
+
+            Changed?.Invoke(deletedCourse, false);// Notify that a course was removed
         }
 
         public void Remove(int index)
@@ -43,7 +45,7 @@ namespace YearlyAcademicCalendar
             Course deletedCourse = courses[index];
             courses.RemoveAt(index);
 
-            Changed(deletedCourse, false);
+            Changed?.Invoke(deletedCourse, false);// Notify that a course was removed
         }
 
         public Course this[int i]
@@ -80,6 +82,36 @@ namespace YearlyAcademicCalendar
         {
             courses.Remove(course);
             return courses;
+        }
+
+        public void UpdateAfterChange()
+        {
+            for (int i = 0; i < courses.Count; i++)
+            {
+                if (i == 0)
+                {
+                    var course = courses[i];
+                    course.PrecedingCourseName = null;
+                    if (courses.Count > 1)
+                        course.FollowingCourseName = courses[i + 1].Name;
+                    courses[i] = course;
+                }
+                else if (i < courses.Count - 1)
+                {
+                    var course = courses[i];
+                    course.PrecedingCourseName = courses[i - 1].Name;
+                    course.FollowingCourseName = courses[i + 1].Name;
+                    courses[i] = course;
+                }
+                else if (i == courses.Count - 1)
+                {
+                    var course = courses[i];
+                    if (courses.Count > 1)
+                        course.PrecedingCourseName = courses[i - 1].Name;
+                    course.FollowingCourseName = null;
+                    courses[i] = course;
+                }
+            }
         }
     }
 }
