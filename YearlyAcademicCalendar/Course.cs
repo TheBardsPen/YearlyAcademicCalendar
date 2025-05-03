@@ -17,7 +17,7 @@ namespace YearlyAcademicCalendar
 
         public Course(string courseName)
         {
-            if(courseName == null || courseName == "")
+            if (courseName == null || courseName == "")
             {
                 this.Name = null;
                 this.Credits = 0;
@@ -38,7 +38,7 @@ namespace YearlyAcademicCalendar
         public override string ToString()
         {
             string msg = "";
-            if(Name == null)
+            if (Name == null)
             {
                 msg += "null";
             }
@@ -47,8 +47,8 @@ namespace YearlyAcademicCalendar
                 msg += Name;
             }
             msg += "|Credits: " + Credits.ToString() + "|Status: " + Status.ToString();
-            
-            if(PrecedingCourseName == null)
+
+            if (PrecedingCourseName == null)
             {
                 msg += "|Preceding Course: null";
             }
@@ -65,7 +65,7 @@ namespace YearlyAcademicCalendar
             {
                 msg += "|Following Course: " + FollowingCourseName;
             }
-            
+
             msg += "\n";
 
             return msg;

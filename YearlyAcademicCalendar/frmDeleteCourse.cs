@@ -13,7 +13,7 @@ namespace YearlyAcademicCalendar
     public partial class frmDeleteCourse : Form
     {
         private string currCourse;
-        private CourseList courseList; 
+        private CourseList courseList;
 
         public frmDeleteCourse()
         {
@@ -32,11 +32,11 @@ namespace YearlyAcademicCalendar
         public string GetDeletionCourseName(CourseList courses)
         {
             this.courseList = courses;
-            
+
             cboCourse.Items.Clear();
 
             // Populate the combo box with course names
-            for (int i = 0; i <  courseList.Count; i ++)
+            for (int i = 0; i < courseList.Count; i++)
             {
                 cboCourse.Items.Add(courseList[i].Name);
             }
@@ -57,7 +57,6 @@ namespace YearlyAcademicCalendar
 
         private void frmDeleteCourse_Load(object sender, EventArgs e)
         {
-
         }
     }
 }

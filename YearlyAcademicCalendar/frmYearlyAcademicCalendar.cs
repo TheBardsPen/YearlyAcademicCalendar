@@ -12,21 +12,18 @@ namespace YearlyAcademicCalendar
 {
     public partial class frmYearlyAcademicCalendar : Form
     {
-
         public frmYearlyAcademicCalendar()
         {
             InitializeComponent();
 
             courses.Changed += Courses_Changed; // Event handler for course changes
         }
-        
+
         private static readonly int MAX_NUMBER_OF_COURSES = 9;
 
-        
         private CourseList courses = new CourseList();
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
-
 
         // Courses_Changed is called when a course is added or removed
         private void Courses_Changed(Course course, bool add)
@@ -55,6 +52,7 @@ namespace YearlyAcademicCalendar
 
             UpdateCourseProperties();
         }
+
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             ClearAllForm();
@@ -74,7 +72,6 @@ namespace YearlyAcademicCalendar
                 txtBox.Clear();
             }
 
-
             courses.Clear();
             totalCredits = 0;
             totalCreditsCompleted = 0;
@@ -93,7 +90,7 @@ namespace YearlyAcademicCalendar
 
                 if (addCourseForm.DialogResult == DialogResult.OK)
                     addCourseToList(newCourse);
-                    //addCourseToArray(newCourse);
+                //addCourseToArray(newCourse);
             }
 
             UpdateForm();
@@ -152,14 +149,12 @@ namespace YearlyAcademicCalendar
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            
-            frmDeleteCourse frmDeleteCourse = new frmDeleteCourse(); 
+            frmDeleteCourse frmDeleteCourse = new frmDeleteCourse();
             string courseToDelete = frmDeleteCourse.GetDeletionCourseName(courses); // returns the course name to delete
 
             // Check if the user selected a course to delete
             if (!string.IsNullOrEmpty(courseToDelete))
             {
-
                 int deleteIndex = -1;
                 for (int i = 0; i < courses.Count; i++)
                 {
@@ -188,10 +183,10 @@ namespace YearlyAcademicCalendar
             txtTotalCredits.Text = totalCredits.ToString();
             txtTotalCreditsCompleted.Text = totalCreditsCompleted.ToString();
 
-            TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4, 
+            TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4,
                 textBox5, textBox6, textBox7, textBox8, textBox9};
 
-            for(int i = 0; i < txtBoxes.Length; i++)
+            for (int i = 0; i < txtBoxes.Length; i++)
             {
                 if (i < courses.Count)
                     txtBoxes[i].Text = courses[i].Name;

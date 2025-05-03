@@ -11,12 +11,15 @@ namespace YearlyAcademicCalendar
         private List<Course> courses;
 
         public delegate void ChangeHandler(Course course, bool add);
+
         public event ChangeHandler Changed;
 
         public delegate void ClearHandler();
+
         public event ClearHandler Cleared;
 
-        public CourseList() { courses = new List<Course>(); }
+        public CourseList()
+        { courses = new List<Course>(); }
 
         public int Count => courses.Count;
 
