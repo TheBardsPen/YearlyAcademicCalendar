@@ -29,7 +29,6 @@ namespace YearlyAcademicCalendar
         public void Clear()
         {
             courses.Clear();
-            //Cleared();
         }
 
         public void Remove(Course course)
@@ -62,6 +61,7 @@ namespace YearlyAcademicCalendar
             set { courses[i] = value; }
         }
 
+        /// This operator overload is used to add a course to the list
         public static CourseList operator +(CourseList courses, Course course)
         {
             int index = 0;
@@ -78,6 +78,7 @@ namespace YearlyAcademicCalendar
             return courses;
         }
 
+        /// This operator overload is used to remove a course from the list
         public static CourseList operator -(CourseList courses, Course course)
         {
             courses.Remove(course);

@@ -22,6 +22,7 @@ namespace YearlyAcademicCalendar
         
         private static readonly int MAX_NUMBER_OF_COURSES = 9;
 
+        
         private CourseList courses = new CourseList();
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
@@ -41,6 +42,7 @@ namespace YearlyAcademicCalendar
             }
             else
             {
+                // If a course is removed, we need to update the total credits
                 totalCredits -= course.Credits;
 
                 if (course.Status == Status.PASSED)
@@ -58,24 +60,24 @@ namespace YearlyAcademicCalendar
             ClearAllForm();
         }
 
+        // ClearAllForm clears all the text boxes and resets the course list
         private void ClearAllForm()
         {
-            txtTotalCredits.Text = "";
-            txtTotalCreditsCompleted.Text = "";
-            textBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            textBox5.Text = "";
-            textBox6.Text = "";
-            textBox7.Text = "";
-            textBox8.Text = "";
-            textBox9.Text = "";
+            txtTotalCredits.Clear();
+            txtTotalCreditsCompleted.Clear();
+
+            TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4,
+                textBox5, textBox6, textBox7, textBox8, textBox9};
+
+            foreach (TextBox txtBox in txtBoxes)
+            {
+                txtBox.Clear();
+            }
+
 
             courses.Clear();
             totalCredits = 0;
             totalCreditsCompleted = 0;
-            //coursesArraySize = 0;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -100,6 +102,8 @@ namespace YearlyAcademicCalendar
         private int getAddIndexAndUpdateTotalCredits(Course addCourse)
         {
             int index = 0;
+
+            // Check if the course is the first one
             for (int i = 0; i < courses.Count; i++)
             {
                 if (courses[i].Name == addCourse.PrecedingCourseName)
@@ -118,46 +122,9 @@ namespace YearlyAcademicCalendar
                 if (courses[i].Name == addCourse.Name)
                     throw new Exception($"Course {addCourse.Name} already exists.");
             }
-                        
-            //foreach(Course c in courses)
-            //{
-            //    if(c.Name == addCourse.Name)
-            //        throw new Exception($"Course {addCourse.Name} already exists.");
-            //}
-
-            //totalCredits += addCourse.Credits;
-
-            //if (addCourse.Status == Status.PASSED)
-            //{
-            //    totalCreditsCompleted += addCourse.Credits;
-            //}
 
             return index;
         }
-
-        //private int getDeleteIndexAndUpdateTotalCredits(string deleteCourse)
-        //{
-        //    int index = -1;
-        //    for (int i = 0; i < courses.Length; i++)
-        //    {
-        //        if (courses[i].Name == deleteCourse)
-        //        {
-        //            index = i;
-        //            totalCredits -= courses[i].Credits;
-
-        //            if (courses[i].Status == Status.PASSED)
-        //            {
-        //                totalCreditsCompleted -= courses[i].Credits;
-        //            }
-        //            break;
-        //        }
-        //    }
-
-        //    if (index == -1)
-        //        throw new Exception($"Course {deleteCourse} does not exist.");
-
-        //    return index;
-        //}
 
         private void addCourseToList(Course newCourse)
         {
@@ -172,13 +139,9 @@ namespace YearlyAcademicCalendar
                     newCourse.FollowingCourseName = null;
                     courses += newCourse;
                 }
-                else                    //There are more than 1 elements in the array
+                else
                 {
                     courses.Add(newCourse, addIndex);
-
-                    //courses.UpdateAfterChange();
-
-                    //courses.UpdatePropertiesAfterAdd(addIndex);
                 }
             }
             catch (Exception e)
@@ -187,74 +150,20 @@ namespace YearlyAcademicCalendar
             }
         }
 
-        //Delete and move elements to the left
-        //private void deleteCourseFromArray(string deletionCourseName)
-        //{
-        //    try
-        //    {
-        //        int deleteIndex = getDeleteIndexAndUpdateTotalCredits(deletionCourseName);
-
-        //        //Decerement counter
-        //        coursesArraySize--;
-
-        //        //If only 1 element in array then just clear the whole array to default
-        //        if (coursesArraySize == 0 && deleteIndex == 0)
-        //        {
-        //            Array.Clear(courses, 0, courses.Length);
-        //            ClearAllForm();
-        //        }
-        //        else            //More than 1 element in the array
-        //        {
-        //            //Move elements to the left to delete from deletIndex
-        //            for (int i = deleteIndex; i < coursesArraySize; i++)
-        //            {
-        //                courses[i] = courses[i + 1];
-        //            }
-
-        //            //Update last element's following course to null
-        //            courses[coursesArraySize].FollowingCourseName = null;
-
-        //            //If first element deleted
-        //            if (deleteIndex == 0)
-        //            {
-        //                courses[0].PrecedingCourseName = null;
-        //            }
-        //            //If element in middle was deleted
-        //            else if (deleteIndex < coursesArraySize)
-        //            {
-        //                courses[deleteIndex - 1].FollowingCourseName = courses[deleteIndex].Name;
-        //                courses[deleteIndex].PrecedingCourseName = courses[deleteIndex - 1].Name;
-        //                courses[deleteIndex].FollowingCourseName = courses[deleteIndex + 1].Name;
-        //            }
-
-        //            //Make empty courses after counter to be null
-        //            if (coursesArraySize > 0 && coursesArraySize < courses.Length - 1)
-        //            {
-        //                for (int i = coursesArraySize; i < courses.Length; i++)
-        //                {
-        //                    courses[i] = new Course(null);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.Message, "Error");
-        //    }
-        //}
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            
             frmDeleteCourse frmDeleteCourse = new frmDeleteCourse(); 
-            string courseToDelete = frmDeleteCourse.GetDeletionCourseName(courses);
+            string courseToDelete = frmDeleteCourse.GetDeletionCourseName(courses); // returns the course name to delete
 
-
+            // Check if the user selected a course to delete
             if (!string.IsNullOrEmpty(courseToDelete))
             {
 
                 int deleteIndex = -1;
                 for (int i = 0; i < courses.Count; i++)
                 {
+                    // Check if the course name matches the one to delete
                     if (courses[i].Name.Equals(courseToDelete, StringComparison.OrdinalIgnoreCase))
                     {
                         deleteIndex = i;
@@ -265,9 +174,6 @@ namespace YearlyAcademicCalendar
                 if (deleteIndex != -1)
                 {
                     courses -= courses[deleteIndex]; // triggers Changed event
-                    //courses.UpdateAfterChange();
-
-                    //UpdateForm();
                 }
                 else
                 {
@@ -278,6 +184,7 @@ namespace YearlyAcademicCalendar
 
         private void UpdateForm()
         {
+            // Update the total credits and completed credits text boxes
             txtTotalCredits.Text = totalCredits.ToString();
             txtTotalCreditsCompleted.Text = totalCreditsCompleted.ToString();
 
