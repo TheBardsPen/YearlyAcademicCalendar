@@ -91,7 +91,6 @@
             this.Name = "frmDeleteCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Delete Course";
-            this.Load += new System.EventHandler(this.frmDeleteCourse_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

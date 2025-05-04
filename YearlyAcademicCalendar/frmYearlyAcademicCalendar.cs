@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace YearlyAcademicCalendar
@@ -16,7 +9,7 @@ namespace YearlyAcademicCalendar
         {
             InitializeComponent();
 
-            courses.Changed += Courses_Changed; // Event handler for course changes
+            courses.Changed += Courses_Changed; // Event wiring for course changes
         }
 
         private static readonly int MAX_NUMBER_OF_COURSES = 9;
@@ -25,127 +18,7 @@ namespace YearlyAcademicCalendar
         private int totalCredits = 0;
         private int totalCreditsCompleted = 0;
 
-        // Courses_Changed is called when a course is added or removed
-        private void Courses_Changed(Course course, bool add)
-        {
-            if (add)
-            {
-                totalCredits += course.Credits;
-
-                if (course.Status == Status.PASSED)
-                {
-                    totalCreditsCompleted += course.Credits;
-                }
-            }
-            else
-            {
-                // If a course is removed, we need to update the total credits
-                totalCredits -= course.Credits;
-
-                if (course.Status == Status.PASSED)
-                {
-                    totalCreditsCompleted -= course.Credits;
-                }
-            }
-
-            UpdateForm();
-
-            UpdateCourseProperties();
-        }
-
-        private void btnClearAll_Click(object sender, EventArgs e)
-        {
-            ClearAllForm();
-        }
-
-        // ClearAllForm clears all the text boxes and resets the course list
-        private void ClearAllForm()
-        {
-            txtTotalCredits.Clear();
-            txtTotalCreditsCompleted.Clear();
-
-            TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4,
-                textBox5, textBox6, textBox7, textBox8, textBox9};
-
-            foreach (TextBox txtBox in txtBoxes)
-            {
-                txtBox.Clear();
-            }
-
-            courses.Clear();
-            totalCredits = 0;
-            totalCreditsCompleted = 0;
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (courses.Count == MAX_NUMBER_OF_COURSES)
-            {
-                MessageBox.Show($"The academic plan is full. Please delete courses to add new ones.", "Plan Full Error");
-            }
-            else
-            {
-                frmAddCourse addCourseForm = new frmAddCourse();
-                Course newCourse = addCourseForm.GetNewCourse();
-
-                if (addCourseForm.DialogResult == DialogResult.OK)
-                    addCourseToList(newCourse);
-                //addCourseToArray(newCourse);
-            }
-
-            UpdateForm();
-        }
-
-        private int getAddIndexAndUpdateTotalCredits(Course addCourse)
-        {
-            int index = 0;
-
-            // Check if the course is the first one
-            for (int i = 0; i < courses.Count; i++)
-            {
-                if (courses[i].Name == addCourse.PrecedingCourseName)
-                {
-                    index = i + 1;
-
-                    break;
-                }
-                else if (courses[i].Name == addCourse.PrecedingCourseName)
-                {
-                    index = i - 1;
-
-                    break;
-                }
-
-                if (courses[i].Name == addCourse.Name)
-                    throw new Exception($"Course {addCourse.Name} already exists.");
-            }
-
-            return index;
-        }
-
-        private void addCourseToList(Course newCourse)
-        {
-            try
-            {
-                int addIndex = getAddIndexAndUpdateTotalCredits(newCourse);
-
-                //If there are no elements in the array
-                if (addIndex == 0 && courses.Count == 0)
-                {
-                    newCourse.PrecedingCourseName = null;
-                    newCourse.FollowingCourseName = null;
-                    courses += newCourse;
-                }
-                else
-                {
-                    courses.Add(newCourse, addIndex);
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Error");
-            }
-        }
+        #region Event Handlers
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -175,6 +48,72 @@ namespace YearlyAcademicCalendar
                     MessageBox.Show($"Course {courseToDelete} does not exist.", "Error");
                 }
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (courses.Count == MAX_NUMBER_OF_COURSES)
+            {
+                MessageBox.Show($"The academic plan is full. Please delete courses to add new ones.", "Plan Full Error");
+            }
+            else
+            {
+                frmAddCourse addCourseForm = new frmAddCourse();
+                Course newCourse = addCourseForm.GetNewCourse();
+
+                if (addCourseForm.DialogResult == DialogResult.OK)
+                    addCourseToList(newCourse);
+            }
+
+            UpdateForm();
+        }
+
+        private void btnViewAll_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            for (int i = 0; i < courses.Count; i++)
+            {
+                msg += courses[i].ToString();
+            }
+
+            MessageBox.Show(msg, "Academic Plan");
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            ClearAllForm();
+        }
+
+        #endregion
+
+        #region Methods
+
+        // Courses_Changed is called when a course is added or removed
+        private void Courses_Changed(Course course, bool add)
+        {
+            if (add)
+            {
+                totalCredits += course.Credits;
+
+                if (course.Status == Status.PASSED)
+                {
+                    totalCreditsCompleted += course.Credits;
+                }
+            }
+            else
+            {
+                // If a course is removed, we need to update the total credits
+                totalCredits -= course.Credits;
+
+                if (course.Status == Status.PASSED)
+                {
+                    totalCreditsCompleted -= course.Credits;
+                }
+            }
+
+            UpdateForm();
+
+            UpdateCourseProperties();
         }
 
         private void UpdateForm()
@@ -225,15 +164,76 @@ namespace YearlyAcademicCalendar
             }
         }
 
-        private void btnViewAll_Click(object sender, EventArgs e)
+        private void addCourseToList(Course newCourse)
         {
-            string msg = "";
+            try
+            {
+                int addIndex = getAddIndex(newCourse);
+
+                //If there are no elements in the array
+                if (addIndex == 0 && courses.Count == 0)
+                {
+                    newCourse.PrecedingCourseName = null;
+                    newCourse.FollowingCourseName = null;
+                    courses += newCourse;
+                }
+                else
+                {
+                    courses.Add(newCourse, addIndex);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
+            }
+        }
+
+        private int getAddIndex(Course addCourse)
+        {
+            int index = 0;
+
+            // Check if the course is the first one
             for (int i = 0; i < courses.Count; i++)
             {
-                msg += courses[i].ToString();
+                if (courses[i].Name == addCourse.PrecedingCourseName)
+                {
+                    index = i + 1;
+
+                    break;
+                }
+                else if (courses[i].Name == addCourse.FollowingCourseName)
+                {
+                    index = i;
+
+                    break;
+                }
+
+                if (courses[i].Name == addCourse.Name)
+                    throw new Exception($"Course {addCourse.Name} already exists.");
             }
 
-            MessageBox.Show(msg, "Academic Plan");
+            return index;
         }
+
+        // ClearAllForm clears all the text boxes and resets the course list
+        private void ClearAllForm()
+        {
+            txtTotalCredits.Clear();
+            txtTotalCreditsCompleted.Clear();
+
+            TextBox[] txtBoxes = { textBox1, textBox2, textBox3, textBox4,
+                textBox5, textBox6, textBox7, textBox8, textBox9};
+
+            foreach (TextBox txtBox in txtBoxes)
+            {
+                txtBox.Clear();
+            }
+
+            courses.Clear();
+            totalCredits = 0;
+            totalCreditsCompleted = 0;
+        }
+
+        #endregion
     }
 }

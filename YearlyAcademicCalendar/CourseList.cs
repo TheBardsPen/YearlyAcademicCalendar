@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YearlyAcademicCalendar
 {
@@ -86,36 +83,6 @@ namespace YearlyAcademicCalendar
         {
             courses.Remove(course);
             return courses;
-        }
-
-        public void UpdateAfterChange()
-        {
-            for (int i = 0; i < courses.Count; i++)
-            {
-                if (i == 0)
-                {
-                    var course = courses[i];
-                    course.PrecedingCourseName = null;
-                    if (courses.Count > 1)
-                        course.FollowingCourseName = courses[i + 1].Name;
-                    courses[i] = course;
-                }
-                else if (i < courses.Count - 1)
-                {
-                    var course = courses[i];
-                    course.PrecedingCourseName = courses[i - 1].Name;
-                    course.FollowingCourseName = courses[i + 1].Name;
-                    courses[i] = course;
-                }
-                else if (i == courses.Count - 1)
-                {
-                    var course = courses[i];
-                    if (courses.Count > 1)
-                        course.PrecedingCourseName = courses[i - 1].Name;
-                    course.FollowingCourseName = null;
-                    courses[i] = course;
-                }
-            }
         }
     }
 }
